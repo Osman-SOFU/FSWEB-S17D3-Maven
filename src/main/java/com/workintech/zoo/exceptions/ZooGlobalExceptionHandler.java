@@ -9,18 +9,28 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @Slf4j
 @ControllerAdvice
 public class ZooGlobalExceptionHandler {
-    private ZooException zooException;
-    private ZooErrorResponse zooErrorResponse;
 
+    // Özel olarak fırlatılan hataları yakalar
     @ExceptionHandler(ZooException.class)
-    public ResponseEntity<ZooErrorResponse> handleException(ZooException zooException){
-        ZooErrorResponse errorResponse = new ZooErrorResponse(zooException.getStatus().value(), zooException.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(errorResponse, zooException.getStatus());
+    public ResponseEntity<ZooErrorResponse> handleException(ZooException zooException) {
+        ZooErrorResponse zooErrorResponse = new ZooErrorResponse(
+                zooException.getHttpStatus().value(),
+                zooException.getLocalizedMessage(),
+                System.currentTimeMillis()
+        );
+        log.error("ZooException occurred = ", zooException);
+        return new ResponseEntity<>(zooErrorResponse, zooException.getHttpStatus());
     }
 
-    @ExceptionHandler
-    public ResponseEntity<ZooErrorResponse> handleException(Exception exception){
-        ZooErrorResponse errorResponse = new ZooErrorResponse(HttpStatus.BAD_REQUEST.value(), exception.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    // Genel bilinmeyen hataları yakalar
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ZooErrorResponse> handleGenericException(Exception exception) {
+        ZooErrorResponse zooErrorResponse = new ZooErrorResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                exception.getLocalizedMessage(),
+                System.currentTimeMillis()
+        );
+        log.error("ZooException occurred = ", exception);
+        return new ResponseEntity<>(zooErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

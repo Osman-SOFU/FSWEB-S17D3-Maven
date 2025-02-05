@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 public class Kangaroo {
     private int id;
     private String name;
+    private double height;
     private double weight;
-    private double sleepHour;
     private String gender;
-    private boolean ısAggressive;
+    private boolean isAggressive;
 }
+

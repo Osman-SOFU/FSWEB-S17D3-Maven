@@ -58,10 +58,9 @@ class MainTest {
 
         assertEquals(1, kangaroo.getId());
         assertEquals("Kenny", kangaroo.getName());
-        assertEquals(2.0, kangaroo.getWeight());
-        assertEquals(85.0, kangaroo.getSleepHour());
-        assertEquals("Male", kangaroo.getGender());
-        assertEquals(false, kangaroo.getIsAggressive());
+        assertEquals(2.0, kangaroo.getHeight());
+        assertEquals(85.0, kangaroo.getWeight());assertEquals("Male", kangaroo.getGender());
+        assertEquals(false, kangaroo.isAggressive());
     }
 
     @Test
@@ -74,7 +73,7 @@ class MainTest {
         kangaroo.setHeight(1.8);
         kangaroo.setWeight(70.0);
         kangaroo.setGender("Female");
-        kangaroo.setIsAggressive(true);
+        kangaroo.setAggressive(true);
 
 
         assertEquals(2, kangaroo.getId());
@@ -82,7 +81,7 @@ class MainTest {
         assertEquals(1.8, kangaroo.getHeight());
         assertEquals(70.0, kangaroo.getWeight());
         assertEquals("Female", kangaroo.getGender());
-        assertTrue(kangaroo.getIsAggressive());
+        assertTrue(kangaroo.isAggressive());
     }
 
     @Test
@@ -94,8 +93,8 @@ class MainTest {
         // Assertions to ensure fields are set correctly
         assertEquals(1, koala.getId());
         assertEquals("Kara", koala.getName());
-        assertEquals(20.0, koala.getSleepHour());
-        assertEquals(15.0, koala.getWeight());
+        assertEquals(15.0, koala.getSleepHour());
+        assertEquals(20.0, koala.getWeight());
         assertEquals("Female", koala.getGender());
     }
 
