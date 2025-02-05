@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ResultAnalyzer.class)
+@ExtendWith(com.workintech.s17d2.ResultAnalyzer.class)
 class MainTest {
 
 
@@ -58,8 +58,8 @@ class MainTest {
 
         assertEquals(1, kangaroo.getId());
         assertEquals("Kenny", kangaroo.getName());
-        assertEquals(2.0, kangaroo.getHeight());
-        assertEquals(85.0, kangaroo.getWeight());
+        assertEquals(2.0, kangaroo.getWeight());
+        assertEquals(85.0, kangaroo.getSleepHour());
         assertEquals("Male", kangaroo.getGender());
         assertEquals(false, kangaroo.getIsAggressive());
     }
